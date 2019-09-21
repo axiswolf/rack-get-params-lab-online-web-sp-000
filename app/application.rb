@@ -21,19 +21,19 @@ class Application
             resp.write "#{cart_item}\n"
           end
         end
-    # elsif req.path.match(/add/)
-    #   item = req.params["item"]
-    #   if @@items.include?(item)
-    #     @@cart << item
-    #     resp.write "added #{item}"
-    #   else
-    #     resp.write "We don't have that item"
-    #   end
-    else
-      resp.write "Path Not Found"
-      resp.finish
+      elsif req.path.match(/add/)
+        item = req.params["item"]
+        if @@items.include?(item)
+          @@cart << item
+          resp.write "added #{item}"
+        else
+          resp.write "We don't have that item"
+        end
+      else
+        resp.write "Path Not Found"
+        resp.finish
+      end
     end
-  end
 
   def handle_search(search_term)
     if @@items.include?(search_term)
